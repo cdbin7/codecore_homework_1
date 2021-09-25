@@ -30,19 +30,13 @@ if (a == true) {
   if(answer == 'v') {
     viewFunc();
   }else if(answer == 'n'){
-    a = true;
-    console.log(`What?`)
-    rl.prompt()
+    newFunc();
   } else if (answer == 'q'){
     quitFunc();
   } else if (splitAnswer[0] == 'c'){
-    listArray[splitAnswer[1]].isComplete = true;
-    console.log(`Completed "${listArray[splitAnswer[1]].task}"`)
-    console.log(menu)
+    completeFunc();
   } else if (splitAnswer[0] == 'd') {
-    listArray[splitAnswer[1]].delete = true;
-    console.log(`Deleted "${listArray.splice(splitAnswer[1], 1)[0].task}"`);
-    console.log(menu)
+    deleteFunc();
   }
 }
 })
@@ -61,6 +55,24 @@ function viewFunc () {
     }
     console.log(menu)
   }
+}
+
+function newFunc() {
+  a = true;
+  console.log(`What?`)
+  rl.prompt()
+}
+
+function completeFunc() {
+  listArray[splitAnswer[1]].isComplete = true;
+  console.log(`Completed "${listArray[splitAnswer[1]].task}"`)
+  console.log(menu)
+}
+
+function deleteFunc() {
+  listArray[splitAnswer[1]].delete = true;
+  console.log(`Deleted "${listArray.splice(splitAnswer[1], 1)[0].task}"`);
+  console.log(menu)
 }
 
 
