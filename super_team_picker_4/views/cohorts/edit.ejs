@@ -1,0 +1,25 @@
+<%-include('../partials/header.ejs') %> 
+
+<h1>Edit Page</h1>
+
+<form action="/cohorts/<%-list.id %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <div>
+    <label for="logoUrl">Logo URL</label> <br>
+    <input type="url" id="" name="logoUrl" value="<%-list.logoUrl%> ">
+  </div>
+
+  <div>
+    <label for="name">Name</label> <br>
+    <input type="text" id="" name="name" value="<%-list.name %> ">
+  </div>
+
+  <div>
+    <label for="member">Members</label> <br>
+    <textarea name="member" id="" cols="30" rows="10">
+      <%-list.member %> 
+    </textarea>
+  </div>
+
+  <input class="btn btn-primary" type="submit" value="Edit">
+</form>

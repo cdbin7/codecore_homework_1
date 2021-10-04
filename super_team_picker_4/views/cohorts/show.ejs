@@ -1,0 +1,68 @@
+<%-include("../partials/header.ejs")%> 
+
+<div class="card" style="margin: 10px">
+  <div class="card-body mb-3">
+<!-- <div class="mb-3"> -->
+    <img src="<%-list.logoUrl%>" alt="">
+    <span class="fs-3"><%-list.name %></span>
+    <p><%=list.member%></p>
+</div>
+</div>
+
+<form class="card" style="margin: 10px" action="/cohorts/<%-list.id%>" method="GET">
+  <div class="card-body mb-3 ">
+    <p class="fs-4">Method</p>
+  
+
+  <div>
+    <input type="radio" name="radioButton" value="teamCount" id="" <%-checkTeam %>>
+    <label for="teamCount">Team Count</label>
+    <br>
+  </div>
+
+  <div class="mb-3">
+    <input type="radio" name="radioButton" value="numPerTeam" id="" <%-checkQuantity %>>
+    <label for="numPerTeam">Number Per Team</label>
+    <br>
+  </div>
+
+  <div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label fs-4">Quantity</label> <br>
+    <input name ="quantity" type="number" class="form-control" id="formGroupExampleInput" value="quantity">
+  </div>
+
+  <input class="btn btn-outline-primary mb-3" type="submit" value="Assign Team">
+</form>
+
+
+<form action="/cohorts/<%-list.id %>">
+  <%if(teams.length > 0) { %>
+    <table class = "table">
+      <thead>
+        <th scope="col">#</th>
+        <th scope="col">Members</th>
+      </thead>
+      <tbody>
+        <% for (let i = 0; i < teams.length; i++){ %>
+        <tr style="margin-left: 30px;">
+          <th scope="row"><%-i+1 %> </th>
+          <td><%= teams[i] %></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+  <%}%>
+</form>
+</div>
+
+<a class="btn btn-primary mb-3" href="/cohorts/<%-list.id%>/edit" style="margin-left:10px;"> 
+  Edit
+</a>
+
+
+<form class="mb-3" action="/cohorts/<%-list.id%>" method="POST" style="margin-left:10px;">
+  <input type="hidden" name="_method" value="DELETE">
+  <input class="btn btn-primary" type="submit" value="Delete">
+</form>
+
+
